@@ -20,6 +20,18 @@ function App() {
     setTaskState({tasks});
   }
 
+  const colorHandler = (taskIndex) => {
+    const tasks = [...taskState.tasks];
+    if (tasks[taskIndex].priority === "High"){
+      tasks[taskIndex].color = 'red'
+    } else if (tasks[taskIndex].priority === "Medium"){
+      tasks[taskIndex].color = 'DarkOrange '
+    } else {
+      tasks[taskIndex].color = 'green'
+    }
+    return tasks[taskIndex].color;
+    }
+
   const deleteHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
     tasks.splice(taskIndex, 1);
@@ -29,7 +41,8 @@ function App() {
   const [ formState, setFormState ] = useState({
     title: "",
     description: "",
-    deadline: ""
+    deadline: "",
+    priority: ""
   });
 
   const formChangeHandler = (event) => {
@@ -44,6 +57,9 @@ function App() {
           break;
       case "deadline":
           form.deadline = event.target.value;
+          break;
+      case "priority":
+          form.priority = event.target.value;
           break;
       default:
           form = formState;
@@ -75,8 +91,10 @@ function App() {
           priority={task.priority}
           key={task.id}
           done={task.done}
+          color={colorHandler(index)}
           markDone={() => doneHandler(index)}
           deleteTask = {() => deleteHandler(index)}
+
         />
         
       ))}
