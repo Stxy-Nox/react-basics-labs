@@ -20,17 +20,7 @@ function App() {
     setTaskState({tasks});
   }
 
-  const colorHandler = (taskIndex) => {
-    const tasks = [...taskState.tasks];
-    if (tasks[taskIndex].priority === "High"){
-      tasks[taskIndex].color = 'red'
-    } else if (tasks[taskIndex].priority === "Medium"){
-      tasks[taskIndex].color = 'DarkOrange '
-    } else {
-      tasks[taskIndex].color = 'green'
-    }
-    return tasks[taskIndex].color;
-    }
+
 
   const deleteHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
@@ -79,6 +69,18 @@ function App() {
     tasks.push(form);
     setTaskState({tasks});
   }
+
+  const colorHandler = (taskIndex) => {
+    const tasks = [...taskState.tasks];
+    if (tasks[taskIndex].priority === "High"){
+      tasks[taskIndex].color = 'red'
+    } else if (tasks[taskIndex].priority === "Medium"){
+      tasks[taskIndex].color = 'DarkOrange '
+    } else {
+      tasks[taskIndex].color = 'green'
+    }
+    return tasks[taskIndex].color;
+    }
 
   return (
     <div className="container">
